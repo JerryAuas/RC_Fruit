@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/main.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/main.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/main.cpp"
+},
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/Sources/arm_coord_2_claw.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/Sources/arm_coord_2_claw.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/Sources/arm_coord_2_claw.cpp"
+},
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/Sources/detect_ball.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/Sources/detect_ball.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/Sources/detect_ball.cpp"
+},
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/Sources/detect_turn.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/Sources/detect_turn.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/Sources/detect_turn.cpp"
+},
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/Sources/serial1.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/Sources/serial1.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/Sources/serial1.cpp"
+},
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/Sources/socket_communication.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/Sources/socket_communication.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/Sources/socket_communication.cpp"
+},
+{
+  "directory": "/home/fpx/fruit_cpp/RC_Fruit/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/fpx/fruit_cpp/RC_Fruit/Headers -isystem /usr/local/include/opencv  -std=c++11 -pthread -g -std=gnu++11 -o CMakeFiles/startCpp.dir/Sources/utils.cpp.o -c /home/fpx/fruit_cpp/RC_Fruit/Sources/utils.cpp",
+  "file": "/home/fpx/fruit_cpp/RC_Fruit/Sources/utils.cpp"
+}
+]
