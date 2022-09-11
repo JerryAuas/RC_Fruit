@@ -1,4 +1,6 @@
+import re
 import sys
+from tkinter.tix import Tree
 sys.path.append('PyScript/')
 from detect_turn import detect_turn
 from detect_qr import detect_qr
@@ -15,6 +17,16 @@ chassic_reset = serial_communicate("0")
 
 # 调用摄像头
 cam = 0  # 调用摄像头
+
+while True:
+    cap = cv2.VideoCapture(cam)
+    ret, _ = cap.read()
+    if not ret:
+        cam += 1
+    else:
+        cap.release()
+        cv2.destroyAllWindows()
+        break
 
 traffic_position_get = serial_communicate("1")  # 前往1号交叉点
 if traffic_position_get:

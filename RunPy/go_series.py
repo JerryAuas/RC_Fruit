@@ -189,7 +189,7 @@ def go_detect_seq(cam, mode, sum=0):
                 # 放置第一个无花果
                 put_in_basket_by_store(direction)
                 # 如果有第二个则放置第二个
-                if sum:
+                if sum == 2:
                     put_in_basket_by_store(direction)
                     
             else:
