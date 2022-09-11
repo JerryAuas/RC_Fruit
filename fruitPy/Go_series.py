@@ -37,7 +37,11 @@ def go_grab_retreat(cam, tree, color, circle_number, grab_time_out=10, go=True, 
     grab_ok = 0
     trial_time = 0  # 最大尝试抓取次数
     t0 = time.time()
-    while not grab_ok and trial_time < 5 and (time.time() - t0) < grab_time_out:
+    grad_sum = 2    # 一个果树总计抓取的果子总数
+    while not grab_ok and trial_time < 5 and (time.time() - t0) < grab_time_out and grad_sum:
+
+        # 两次居中？
+
         arm_standby(arm_middle)  # 居中待命，稳定镜头
         arm_standby(arm_middle)  # 居中待命，稳定镜头
         circle, _ = detect_circles(cam, color=color, circle_number=circle_number, time_out=10, time_out_en=False)
@@ -50,10 +54,20 @@ def go_grab_retreat(cam, tree, color, circle_number, grab_time_out=10, go=True, 
         # 解算第一个圆
         coord = arm_coord_2_claw([circle[0], circle[1]])
         data_ik = socket_communicate(coord)
-        arm_grab(data_ik)
+
+        # 第一次抓取，共抓取两次
+        arm_grab_put_side(data_ik)
 
         # 抓取检查
         grab_ok = check_grab(cam, color)
+
+        # 如果抓取成功状态位减1
+        if grab_ok:
+            if grad_sum == 2:
+                grab_ok -= 1
+            grad_sum -= 1
+            # 进行第二次抓取
+        
 
     # 退回
     if retreat:

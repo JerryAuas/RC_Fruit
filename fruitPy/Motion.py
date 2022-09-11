@@ -60,7 +60,43 @@ def put_side():
     Arm.Arm_serial_servo_write6(90, 180, 0, 0, 90, loose, 500)
     time.sleep(.5)
 
+def arm_grab_put_side(data_ik):
+    """
+    从待命状态直接抓取后放入到储存区中
+    """
+    # 居中待命
+    arm_standby(90)
+    # 中途防撞
+    arm_midway()
+    # 张开,前出,预备
+    Arm.Arm_serial_servo_write6(data_ik[0], data_ik[1], data_ik[2], data_ik[3]-25, 90, loose, 500)
+    time.sleep(1)
+    # 张开,前出,到位
+    Arm.Arm_serial_servo_write6(data_ik[0], data_ik[1], data_ik[2], data_ik[3], 90, loose, 500)
+    time.sleep(1)
+    # 抓紧
+    Arm.Arm_serial_servo_write6(data_ik[0], data_ik[1], data_ik[2], data_ik[3], 90, tight, 500)
+    time.sleep(1)
+    # 抓紧，摘下
+    Arm.Arm_serial_servo_write6(data_ik[0], data_ik[1], data_ik[2], data_ik[3]-15, 90, tight, 500)
+    time.sleep(1)
+    # 回中
+    Arm.Arm_serial_servo_write6(90, 180, 0, 0, 90, tight, 500)
+    time.sleep(.5)
+    # # 回中
+    # Arm.Arm_serial_servo_write6(90, 180, 0, 0, 90, tight, 500)
+    # time.sleep(.5)
+    # 抓紧，左转
+    Arm.Arm_serial_servo_write6(162, 180, 0, 0, 90, tight, 500)
+    time.sleep(1)
+    # 松开
+    Arm.Arm_serial_servo_write6(162, 180, 0, 0, 90, loose, 500)
+    time.sleep(.4)
+    # 回中
+    Arm.Arm_serial_servo_write6(90, 180, 0, 0, 90, loose, 500)
+    time.sleep(.5)
 
+    
 def put_in_basket(direction):
     # 放球
     Arm.Arm_serial_servo_write6(direction, 180, 0, 0, 90, tight, 500)  # 转向到位

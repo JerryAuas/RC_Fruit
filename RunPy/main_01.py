@@ -8,6 +8,7 @@ from motion import arm_standby, arm_scout
 from serial import serial_communicate
 
 
+
 input("按回车运行\n>>>")
 arm_standby(arm_middle)
 chassic_reset = serial_communicate("0")
@@ -45,18 +46,26 @@ if flag_qr:  # 解到二维码
     # 前往4号果对应的树（fruit_tree_basket2行1列），此时树上应有2个黄果，20s内抓1个，退回交叉点待命
     # 第一次抓取果子时候只需进行一次抓取加放置操作，不需退回节点
 
-    grab_ok = go_grab_retreat(cam, tree=int(fruit_tree_basket[1][0]),
-                              color=yellow, circle_number=2, grab_time_out=20, retreat=False) # retreat= False 代表不需要返回
+    grab_ok_1, grab_sum_1 = go_grab_retreat(cam, tree=int(fruit_tree_basket[1][0]),
+                              color=yellow, circle_number=2, grab_time_out=20) # retreat= False 代表不需要返回
 
-    # 如果第一次抓取成功,放置储存区
-    # if grab_ok:
-    #     put_in_repo put_in_basket
-
-    num_4 = 1 if grab_ok else 2  # 更新黄球计数(存在缺陷，即碰落会导致树上只有1，但计数为2不变，可考虑参考detect_ball.py Line85 自行修改)
+    num_4 = np.zeros((2, 1)) # 创建一行一列的空表，用以记录已抓取的果子数量
+    num_4[0] = grab_sum_1  # 更新无花果黄球计数
     
-    # 此时树上已经
+    # 此时树上已经采摘完无花果，下面采摘草莓
+    grab_ok_2, grab_sum_2 = go_grab_retreat(cam, tree=int(fruit_tree_basket[1][1]),
+                                  color=yellow, circle_number=2, grab_time_out=10)
 
-    fruit_tree_basket[2], _ = go_detect_seq(cam, mode=1)   # 放置区测序，记录到第3行(测序时会将抓到的4号果对应放置)
+    num_4[1] = grab_sum_2 # 更新草莓数量
+
+    if grab_ok_1 or grab_ok_2:
+        if grab_ok_1:
+            fruit_tree_basket[2], _ = go_detect_seq(cam, mode=1, sum=num_4[0])   # 放置区测序，记录到第3行(测序时会将抓到的4号果对应放置)，此时无花果已经放置
+        else: 
+            fruit_tree_basket[2], _ = go_detect_seq(cam, mode=1, sum=num_4[1])
+    # 接下来放置草莓
+    if grab_ok_2:
+        go_put_in_basket(int(np.where(fruit_tree_basket[2] == 3)[0][0]), sum=num_4[1])
 
 else:  # 未解到二维码
     fruit_tree_basket[0], grab_ok = go_detect_seq(cam, mode=0)  # 前往采摘区测序
@@ -68,7 +77,6 @@ else:  # 未解到二维码
 
     fruit_tree_basket[2], _ = go_detect_seq(cam, mode=1)  # 放置区测序
 
-# 抓4号果剩下的1个黄球
 
 
 # 去终点
